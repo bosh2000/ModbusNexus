@@ -1,12 +1,30 @@
-﻿<Window x:Class="ModbusNexus.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ModbusNexus"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+﻿<Window
+    x:Class="ModbusNexus.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ModbusNexus"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    Style="{StaticResource MaterialDesignWindow}"
+    mc:Ignorable="d">
+    <DockPanel>
+        <!-- Левая панель: устройства -->
+        <materialDesign:Card DockPanel.Dock="Left" Width="300">
+            <TreeView x:Name="DevicesTree" />
+        </materialDesign:Card>
 
-    </Grid>
+        <!-- Правая панель: данные -->
+        <TabControl>
+            <TabItem Header="Регистры">
+                <DataGrid ItemsSource="{Binding Registers}" />
+            </TabItem>
+            <TabItem Header="Hex">
+                <TextBox FontFamily="Consolas" Text="{Binding HexDump}" />
+            </TabItem>
+        </TabControl>
+    </DockPanel>
 </Window>
